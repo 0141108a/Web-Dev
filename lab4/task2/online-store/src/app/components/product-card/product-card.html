@@ -1,0 +1,72 @@
+<div class="product-card">
+  <div class="product-image" 
+       (mouseenter)="showGallery = true" 
+       (mouseleave)="showGallery = false">
+    
+    <!-- Основное изображение -->
+    <img [src]="product.images[currentImageIndex]" 
+         [alt]="product.name"
+         (error)="handleImageError($event)">
+    
+    <!-- Галерея с навигацией -->
+    <div class="image-gallery" *ngIf="showGallery">
+      <button class="gallery-nav prev" (click)="previousImage($event)">‹</button>
+      <button class="gallery-nav next" (click)="nextImage($event)">›</button>
+      
+      <!-- Индикатор текущего изображения -->
+      <div class="image-counter">
+        {{currentImageIndex + 1}} / {{product.images.length}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Миниатюры под основным изображением -->
+  <div class="thumbnail-strip" *ngIf="showGallery">
+    <div class="thumbnail-container">
+      <img 
+        *ngFor="let image of product.images; let i = index"
+        [src]="image" 
+        [alt]="product.name + ' ' + (i + 1)"
+        [class.active]="i === currentImageIndex"
+        (click)="setImage(i, $event)"
+        (error)="handleImageError($event)"
+        class="thumbnail">
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h3 class="product-title">{{ product.name }}</h3>
+    <p class="product-description">{{ product.description }}</p>
+    
+    <div class="product-rating">
+      <span 
+        *ngFor="let star of getStars()" 
+        class="star"
+        [class.full]="getStarType(star) === 'full'"
+        [class.half]="getStarType(star) === 'half'"
+        [class.empty]="getStarType(star) === 'empty'">
+        ★
+      </span>
+      <span class="rating-value">{{ product.rating }}</span>
+    </div>
+
+    <div class="product-price">
+      {{ product.price | number }} ₸
+    </div>
+
+    <div class="product-actions">
+      <a [href]="product.link" target="_blank" class="btn btn-primary">
+        Купить на Kaspi.kz
+      </a>
+      
+      <div class="share-buttons">
+        <button class="btn btn-share" (click)="shareOnWhatsApp()" title="Поделиться в WhatsApp">
+          <span class="share-icon">📱</span> WhatsApp
+        </button>
+        <button class="btn btn-share" (click)="shareOnTelegram()" title="Поделиться в Telegram">
+          <span class="share-icon">✈️</span> Telegram
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
