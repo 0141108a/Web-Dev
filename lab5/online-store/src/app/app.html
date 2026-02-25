@@ -1,0 +1,32 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>Kaspi.kz Магазин</h1>
+    <p>Выберите категорию:</p>
+  </header>
+
+  <nav class="categories-nav">
+    <button 
+      *ngFor="let category of categories" 
+      class="category-btn"
+      [class.active]="selectedCategoryId === category.id"
+      (click)="selectCategory(category.id, category.name)">
+      {{ category.name }}
+    </button>
+  </nav>
+
+  <main class="main-content">
+    @if (selectedCategoryId) {
+      <app-product-list 
+        [products]="getProductsByCategory()"
+        [categoryName]="selectedCategoryName"
+        (like)="onLike($event)"
+        (delete)="onDelete($event)">
+      </app-product-list>
+    } @else {
+      <div class="welcome-message">
+        <h2>Добро пожаловать!</h2>
+        <p>Выберите категорию товаров, чтобы начать просмотр</p>
+      </div>
+    }
+  </main>
+</div>
