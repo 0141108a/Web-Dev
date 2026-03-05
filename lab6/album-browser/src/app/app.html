@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-brand" routerLink="/">📸 Album Browser</a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          Главная
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">
+          О нас
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/albums" routerLinkActive="active">
+          Альбомы
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <p>&copy; 2026 Album Browser. Сделано для Angular</p>
+  </div>
+</footer>

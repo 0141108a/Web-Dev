@@ -1,0 +1,82 @@
+<div class="about-container">
+  <div class="about-header">
+    <h1>ℹ️ О проекте</h1>
+    <p class="subtitle">Современное приложение для просмотра и управления фотографиями</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="card-icon">🎯</div>
+      <h2>Наша миссия</h2>
+      <p>Создать удобный и красивый инструмент для просмотра фотографий, который будет доступен каждому.</p>
+    </div>
+
+    <div class="about-card">
+      <div class="card-icon">⚙️</div>
+      <h2>Технологии</h2>
+      <p>Angular 17, TypeScript, RxJS, Standalone API</p>
+    </div>
+
+    <div class="about-card">
+      <div class="card-icon">📊</div>
+      <h2>Особенности</h2>
+      <p>✓ Просмотр альбомов<br>✓ Редактирование<br>✓ Просмотр фото<br>✓ Удаление</p>
+    </div>
+  </div>
+
+  <div class="developer-section">
+    <h2>👨‍💻 Разработчик</h2>
+    
+    <div class="developer-card">
+      <div class="developer-avatar">
+        <span class="avatar-emoji">👤</span>
+      </div>
+      
+      <div class="developer-info">
+        <div class="info-item">
+          <span class="info-label">Имя:</span>
+          <span class="info-value">{{ developerName }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="info-label">Курс:</span>
+          <span class="info-value">{{ courseName }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="info-label">Группа:</span>
+          <span class="info-value">{{ groupName }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="info-label">Университет:</span>
+          <span class="info-value">{{ university }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="info-label">Год:</span>
+          <span class="info-value">{{ currentYear }}</span>
+        </div>
+        
+        <div class="info-item">
+          <span class="info-label">GitHub:</span>
+          <a [href]="githubLink" target="_blank" class="github-link">
+            {{ githubLink }}
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="course-info">
+      <h3>📚 О курсе</h3>
+      <p>Этот проект был создан в рамках изучения Angular. Основные темы:</p>
+      <ul>
+        <li>Компоненты и шаблоны</li>
+        <li>Маршрутизация (Router)</li>
+        <li>HTTP клиент и сервисы</li>
+        <li>Observables и RxJS</li>
+        <li>Standalone компоненты</li>
+      </ul>
+    </div>
+  </div>
+</div>

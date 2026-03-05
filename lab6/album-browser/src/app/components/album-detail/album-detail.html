@@ -1,0 +1,68 @@
+<div class="detail-container">
+  <button class="back-btn" (click)="goBack()">
+    ← Назад к списку
+  </button>
+  
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Загрузка альбома...</p>
+  </div>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div *ngIf="!loading && !error && album" class="album-detail">
+    <div class="detail-header">
+      <h1>{{ album.title }}</h1>
+      <span class="album-id">ID: {{ album.id }}</span>
+    </div>
+    
+    <div class="detail-card">
+      <div class="info-section">
+        <h2>📋 Информация</h2>
+        <div class="info-row">
+          <span class="label">ID альбома:</span>
+          <span class="value">{{ album.id }}</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Пользователь:</span>
+          <span class="value">{{ album.userId }}</span>
+        </div>
+      </div>
+      
+      <div class="edit-section">
+        <h2>✏️ Редактирование</h2>
+        <div class="edit-form">
+          <label for="title">Название альбома</label>
+          <input 
+            type="text" 
+            id="title"
+            [(ngModel)]="editedTitle" 
+            class="title-input"
+            placeholder="Введите название"
+          >
+          <button 
+            class="save-btn" 
+            (click)="saveChanges()"
+            [disabled]="editedTitle === album.title"
+          >
+            💾 Сохранить изменения
+          </button>
+        </div>
+      </div>
+      
+      <div class="actions-section">
+        <h2>🖼️ Действия</h2>
+        <div class="action-buttons">
+          <a [routerLink]="['/albums', album.id, 'photos']" class="photos-btn">
+            📸 Просмотреть фотографии (50 фото)
+          </a>
+          <button class="delete-btn" (click)="deleteAlbum()">
+            🗑️ Удалить альбом
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

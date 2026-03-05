@@ -1,0 +1,36 @@
+<div class="albums-container">
+  <div class="albums-header">
+    <h1>📚 Все альбомы</h1>
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" placeholder="Поиск..." (input)="filterAlbums($event)">
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Загрузка...</p>
+  </div>
+  
+  <div *ngIf="error" class="error-message">⚠️ {{ error }}</div>
+  
+  <div *ngIf="!loading && !error" class="albums-grid">
+    <div *ngIf="filteredAlbums.length === 0" class="no-results">
+      <div class="no-results-icon">🔍</div>
+      <h3>Ничего не найдено</h3>
+    </div>
+    
+    <div *ngFor="let album of filteredAlbums" class="album-card" (click)="viewAlbum(album.id)">
+      <div class="album-preview"></div>
+      <div class="album-content">
+        <span class="album-id-badge">#{{ album.id }}</span>
+        <button class="delete-btn" (click)="deleteAlbum(album.id, $event)">×</button>
+        <h3 class="album-title">{{ album.title }}</h3>
+        <div class="album-meta">
+          <span>👤 {{ album.userId }}</span>
+          <span>📷 50 фото</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
