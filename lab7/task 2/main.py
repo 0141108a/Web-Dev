@@ -1,70 +1,68 @@
-from models import Car, Motorcycle, ElectricScooter
+from models import Book, Magazine, DVD
 
-def demonstrate_polymorphism(vehicles):
-    print("\nДемонстрация полиморфизма")
-    print("="*30)
-    
-    for vehicle in vehicles:
-        print(f"\nТранспорт: {vehicle}")
-        print(f"Запуск: {vehicle.start_engine()}")
-        print(f"Инфо: {vehicle.get_info()}")
-        
-        if hasattr(vehicle, 'honk'):
-            print(f"Сигнал: {vehicle.honk()}")
-        if hasattr(vehicle, 'wheelie'):
-            print(f"Трюк: {vehicle.wheelie()}")
-        if hasattr(vehicle, 'charge'):
-            print(f"Зарядка: {vehicle.charge(20)}")
+
+def show_library_status(items):
+    print("\nLibrary Status:")
+    for item in items:
+        print(f"  • {item}")
+
+
+def demonstrate_polymorphism(items):
+    print("\nPolymorphism Demonstration:")
+    for item in items:
+        print(f"\nItem: {item}")
+        print(f"Info: {item.get_info()}")
+
+        if hasattr(item, 'read_sample'):
+            print(f"Sample: {item.read_sample()}")
+        if hasattr(item, 'browse'):
+            print(f"Browse: {item.browse()}")
+        if hasattr(item, 'play_trailer'):
+            print(f"Trailer: {item.play_trailer()}")
 
 
 def main():
-    print("Создание транспортных средств")
-    print("="*30)
-    
-    car1 = Car("Toyota", "Camry", 2022, "бензин", 4)
-    car2 = Car("Tesla", "Model 3", 2023, "электричество", 4)
-    bike1 = Motorcycle("Harley-Davidson", "Street 750", 2021, 750, False)
-    bike2 = Motorcycle("Ural", "Gear Up", 2022, 750, True)
-    scooter1 = ElectricScooter("Xiaomi", "Mi Pro 2", 2023, 12400, 25)
-    
-    vehicles = [car1, car2, bike1, bike2, scooter1]
-    
-    for vehicle in vehicles:
-        print(f"\nСоздан: {vehicle}")
-    
-    print("\nДемонстрация работы методов")
-    print("="*30)
-    
-    print(f"\n--- Тестируем автомобиль: {car1}")
-    print(car1.start_engine())
-    print(car1.drive(150))
-    print(car1.honk())
-    
-    print(f"\n--- Тестируем мотоцикл: {bike1}")
-    print(bike1.start_engine())
-    print(bike1.wheelie())
-    print(bike1.drive(50))
-    
-    print(f"\n--- Тестируем мотоцикл с коляской: {bike2}")
-    print(bike2.start_engine())
-    print(bike2.wheelie())
-    
-    print(f"\n--- Тестируем электросамокат: {scooter1}")
-    print(scooter1.start_engine())
-    print(scooter1.drive(5))
-    print(scooter1.drive(10))
-    print(scooter1.charge(30))
-    print(scooter1.start_engine())
-    
-    demonstrate_polymorphism(vehicles)
-    
-    print("\nКоллективная поездка")
-    print("="*30)
-    
-    for vehicle in vehicles:
-        print(f"\n{vehicle} отправляется в путь:")
-        print(vehicle.start_engine())
-        print(vehicle.drive(100))
+    print("Library Management System")
+
+    print("\nCreating library items:")
+    book1 = Book("War and Peace", 1869, "B001", "Leo Tolstoy", 1225)
+    book2 = Book("Crime and Punishment", 1866, "B002", "Fyodor Dostoevsky", 430)
+    magazine1 = Magazine("Forbes", 2024, "M001", 45, "Forbes Media")
+    magazine2 = Magazine("National Geographic", 2023, "M002", 12, "NatGeo")
+    dvd1 = DVD("The Matrix", 1999, "D001", "Wachowski", 136)
+
+    items = [book1, book2, magazine1, magazine2, dvd1]
+
+    for item in items:
+        print(f"  • Created: {item}")
+
+    print("\nTesting book operations:")
+    print(book1.get_info())
+    print(book1.borrow())
+    print(book1.read_sample())
+    print(book1.return_item())
+
+    print("\nTesting magazine operations:")
+    print(magazine1.get_info())
+    print(magazine1.browse())
+    print(magazine1.borrow())
+
+    print("\nTesting dvd operations:")
+    print(dvd1.get_info())
+    print(dvd1.play_trailer())
+    print(dvd1.borrow())
+    print(dvd1.borrow())
+
+    demonstrate_polymorphism(items)
+
+    show_library_status(items)
+
+    print("\nReturning items:")
+    for item in items:
+        if not item._is_available:
+            print(f"  • {item.return_item()}")
+
+    show_library_status(items)
 
 
 if __name__ == "__main__":
